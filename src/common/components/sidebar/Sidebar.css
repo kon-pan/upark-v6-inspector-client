@@ -1,0 +1,9 @@
+.sidebar-navlink {
+  @apply flex cursor-pointer items-center space-x-1 rounded px-4 py-1 text-lg font-medium text-neutral-900 transition duration-75 ease-in-out;
+}
+#logout-navlink {
+  @apply flex cursor-pointer items-center space-x-1 rounded px-4 py-1 text-lg font-medium text-red-600 transition duration-75 ease-in-out;
+}
+.sidebar-navlink:hover {
+  @apply bg-neutral-200;
+}
