@@ -1,12 +1,15 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import useAuth from './common/contexts/AuthContext';
+import { ScreenSizeContext } from './common/contexts/ScreenSizeContext';
+import Fallback from './pages/fallback/Fallback';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 
 function App() {
   const { inspector } = useAuth();
+  const screen = useContext(ScreenSizeContext);
   console.log(inspector);
 
   //gets screen size - to fix mobile viewport height problem
@@ -31,7 +34,7 @@ function App() {
     }
   }, []);
 
-  return (
+  return screen.isMobile || screen.isTablet ? (
     <BrowserRouter>
       <Routes>
         <Route
@@ -42,6 +45,12 @@ function App() {
           path='/'
           element={inspector?.id ? <Home /> : <Navigate to='/login' />}
         />
+      </Routes>
+    </BrowserRouter>
+  ) : (
+    <BrowserRouter>
+      <Routes>
+        <Route path='*' element={<Fallback />} />
       </Routes>
     </BrowserRouter>
   );

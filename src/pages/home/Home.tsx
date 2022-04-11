@@ -2,6 +2,7 @@ import { useState } from 'react';
 import BasicLayout from '../../common/layouts/BasicLayout';
 import { useSidebar } from '../../common/stores/SidebarStore';
 import { classNames } from '../../common/utils/classnames';
+import InputTab from './components/InputTab';
 import QRTab from './components/QrTab';
 
 const Home = () => {
@@ -70,6 +71,13 @@ const Home = () => {
           {/* Tab content */}
           {tab === 1 && (
             <QRTab
+              getResultLoading={getResultLoading}
+              getLicensePlate={getLicensePlate}
+              getResult={getResult}
+            />
+          )}
+          {tab === 2 && (
+            <InputTab
               getResultLoading={getResultLoading}
               getLicensePlate={getLicensePlate}
               getResult={getResult}
