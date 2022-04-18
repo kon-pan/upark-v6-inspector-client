@@ -6,6 +6,9 @@ import { ScreenSizeContext } from './common/contexts/ScreenSizeContext';
 import Fallback from './pages/fallback/Fallback';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
+import Password from './pages/settings/security/password/Password';
+import Security from './pages/settings/security/Security';
+import Settings from './pages/settings/Settings';
 
 function App() {
   const { inspector } = useAuth();
@@ -37,6 +40,18 @@ function App() {
   return screen.isMobile || screen.isTablet ? (
     <BrowserRouter>
       <Routes>
+        <Route
+          path='/settings/security/password'
+          element={inspector?.id ? <Password /> : <Navigate to='/' />}
+        />
+        <Route
+          path='/settings/security'
+          element={inspector?.id ? <Security /> : <Navigate to='/' />}
+        />
+        <Route
+          path='/settings'
+          element={inspector?.id ? <Settings /> : <Navigate to='/' />}
+        />
         <Route
           path='/login'
           element={inspector?.id ? <Navigate to='/' /> : <Login />}

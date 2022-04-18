@@ -5,6 +5,7 @@ import { useSidebar } from '../../stores/SidebarStore';
 import { classNames } from '../../utils/classnames';
 import HomeIcon from './icons/HomeIcon';
 import LogoutIcon from './icons/LogoutIcon';
+import CogIcon from './icons/CogIcon';
 
 const Sidebar = () => {
   const { sidebarOpen, setSidebarOpen } = useSidebar();
@@ -36,6 +37,17 @@ const Sidebar = () => {
           >
             <HomeIcon />
             <div>Αρχική σελίδα</div>
+          </Link>
+
+          <Link
+            onClick={() => {
+              setSidebarOpen(false);
+            }}
+            to='/settings'
+            className='sidebar-navlink'
+          >
+            <CogIcon />
+            <div>Ρυθμίσεις</div>
           </Link>
 
           <div onClick={logout} id='logout-navlink'>
