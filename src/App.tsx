@@ -13,7 +13,6 @@ import Settings from './pages/settings/Settings';
 function App() {
   const { inspector } = useAuth();
   const screen = useContext(ScreenSizeContext);
-  console.log(inspector);
 
   //gets screen size - to fix mobile viewport height problem
   useEffect(() => {

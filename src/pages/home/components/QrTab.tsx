@@ -19,30 +19,28 @@ const QRTab = ({ getResultLoading, getLicensePlate, getResult }: TabProps) => {
   const handleScanWebCam = async (result: string | null) => {
     if (result) {
       getResultLoading(true); // Initialize loading spinner
-      console.log(result);
+      const jsonData = JSON.parse(result);
+      // console.log(jsonData.licensePlate);
 
       // setLicensePlate(result);
 
       try {
         const response: AxiosResponse = await axios.post(
           `${process.env.REACT_APP_SERVER_HOSTNAME}/inspector/inspect`,
-          { licensePlate: result },
+          { licensePlate: jsonData.licensePlate },
           { withCredentials: true }
         );
 
-        console.log(response);
         const data: { active: boolean } = response.data;
 
         if (data.active) {
-          console.log('Ενεργή');
           getResultLoading(false); // Stop loading spinner
           getResult(data.active);
-          getLicensePlate(result);
+          getLicensePlate(jsonData.licensePlate);
         } else {
-          console.log('Αποτυχία');
           getResultLoading(false); // Stop loading spinner
           getResult(data.active);
-          getLicensePlate(result);
+          getLicensePlate(jsonData.licensePlate);
         }
       } catch (error) {
         console.log(error);
@@ -51,8 +49,8 @@ const QRTab = ({ getResultLoading, getLicensePlate, getResult }: TabProps) => {
   };
 
   return (
-    <div className='p-4 bg-white border-b shadow-lg'>
-      <div className='w-11/12 mx-auto'>
+    <div className='border-b bg-white p-4 shadow-lg'>
+      <div className='mx-auto w-11/12'>
         <QrReader
           delay={500}
           style={{ width: '100%' }}

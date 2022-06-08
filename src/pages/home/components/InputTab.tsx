@@ -22,7 +22,7 @@ const InputTab = ({
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
     getResultLoading(true); // Initialize loading spinner
-    console.log({ licensePlate });
+    // console.log({ licensePlate });
 
     try {
       const response: AxiosResponse = await axios.post(
@@ -31,16 +31,13 @@ const InputTab = ({
         { withCredentials: true }
       );
 
-      console.log(response);
       const data: { active: boolean } = response.data;
 
       if (data.active) {
-        console.log('Ενεργή');
         getResultLoading(false); // Stop loading spinner
         getResult(data.active);
         getLicensePlate(licensePlate);
       } else {
-        console.log('Αποτυχία');
         getResultLoading(false); // Stop loading spinner
         getResult(data.active);
         getLicensePlate(licensePlate);

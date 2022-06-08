@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDocTitle } from '../../common/hooks/useDocTitle';
 import BasicLayout from '../../common/layouts/BasicLayout';
 import { useSidebar } from '../../common/stores/SidebarStore';
 import { classNames } from '../../common/utils/classnames';
@@ -6,6 +7,7 @@ import InputTab from './components/InputTab';
 import QRTab from './components/QrTab';
 
 const Home = () => {
+  const [, ] = useDocTitle("uPark | Αρχική σελίδα");
   const { setSidebarOpen, sidebarOpen } = useSidebar();
 
   const [tab, setTab] = useState(1);

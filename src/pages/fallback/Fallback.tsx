@@ -1,6 +1,8 @@
-import React from 'react';
+import { useDocTitle } from '../../common/hooks/useDocTitle';
 
 const Fallback = () => {
+  const [, ] = useDocTitle("uPark");
+  
   return (
     <div className='flex min-h-screen flex-col items-center justify-center bg-blue-700'>
       <div className='flex space-x-12'>

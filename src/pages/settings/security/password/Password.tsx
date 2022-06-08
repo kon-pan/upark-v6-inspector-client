@@ -1,12 +1,11 @@
 import '../../Settings.css';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useAuth from '../../../../common/contexts/AuthContext';
 import BasicLayout from '../../../../common/layouts/BasicLayout';
 import { useSidebar } from '../../../../common/stores/SidebarStore';
 import { classNames } from '../../../../common/utils/classnames';
-import { sleep } from '../../../../common/utils/sleep';
 import axios, { AxiosResponse } from 'axios';
 
 const Password = () => {
@@ -19,7 +18,7 @@ const Password = () => {
 
   const onSubmit = async (data: any) => {
     setSubmitting(true);
-    await sleep(1000);
+    // await sleep(1000);
     const { currentPassword, newPassword } = data;
 
     try {
@@ -34,7 +33,6 @@ const Password = () => {
       console.log(response);
 
       if (response.data.success) {
-        console.log('Update success');
         window.location.reload();
       } else {
         setErrors(response.data.err);
@@ -123,7 +121,7 @@ const Password = () => {
         {/* Row */}
         <div className='mt-16 flex w-full flex-col items-center'>
           <Link
-            to='/settings/user-info'
+            to='/settings/security'
             className='flex items-center justify-center rounded border bg-white px-4 py-1 font-medium shadow-md'
           >
             <div>

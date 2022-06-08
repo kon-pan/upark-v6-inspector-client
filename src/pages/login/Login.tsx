@@ -4,8 +4,10 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../common/contexts/AuthContext';
 import { classNames } from '../../common/utils/classnames';
 import { sleep } from '../../common/utils/sleep';
+import { useDocTitle } from '../../common/hooks/useDocTitle';
 
 const Login = () => {
+  const [, ] = useDocTitle("uPark | Είσοδος");
   const { register, handleSubmit } = useForm();
   const { login } = useAuth();
 
@@ -14,9 +16,8 @@ const Login = () => {
 
   const onSubmit = async (data: any) => {
     setLoading(true);
-    await sleep(1000);
+    // await sleep(1000);
     const { email, password } = data;
-    console.log(email, password);
 
     const success = await login(email, password);
     if (success) {
